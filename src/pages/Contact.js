@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiPhoneCall, FiMail, FiMapPin } from "react-icons/fi";
+import { AiOutlineSend } from "react-icons/ai";
 import { useTheme } from '../ThemeContext';
 
 const Contact = () => {
@@ -21,26 +22,31 @@ const Contact = () => {
       icon: FiMapPin,
     }
   ];
+
   const inputsData = [
     {
       id: 1,
       title: "Nome",
-      desc: "Nome e Sobrenome"
+      desc: "Nome e Sobrenome",
+      type: "text"
     },
     {
       id: 2,
       title: "Email",
-      desc: "seuemail@email.com"
+      desc: "seuemail@email.com",
+      type: "text"
     },
     {
       id: 3,
       title: "Assunto",
-      desc: "Qual o tópico?"
+      desc: "Qual o tópico?",
+      type: "text"
     },
     {
       id: 4,
       title: "Mensagem",
-      desc: "Seja sucinto na sua mensagem"
+      desc: "Seja sucinto na sua mensagem",
+      type: "textarea"
     }
   ];
 
@@ -65,17 +71,47 @@ const Contact = () => {
             {inputsData.slice(0, 2).map((input, index) => (
               <div key={index} className="flex flex-col mb-4 text-left">
                 <label htmlFor={input.id} className={`p-2 rounded-ss-md rounded-tr-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`}>{input.title}</label>
-                <input type="text" placeholder={input.desc} id={input.id} className={`p-2 focus:outline-none border-none rounded-ee-md rounded-es-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`} />
+                {input.type === "textarea" ? (
+                  <textarea
+                    placeholder={input.desc}
+                    id={input.id}
+                    className={`p-2 focus:outline-none border-none rounded-ee-md rounded-es-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`}
+                  />
+                ) : (
+                  <input
+                    type={input.type}
+                    placeholder={input.desc}
+                    id={input.id}
+                    className={`p-2 focus:outline-none border-none rounded-ee-md rounded-es-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`}
+                  />
+                )}
               </div>
             ))}
           </div>
           {inputsData.slice(2).map((input, index) => (
             <div key={index} className="flex flex-col mb-4 text-left">
               <label htmlFor={input.id} className={`p-2 rounded-ss-md rounded-tr-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`}>{input.title}</label>
-              <input type="text" placeholder={input.desc} id={input.id} className={`p-2 focus:outline-none border-none rounded-ee-md rounded-es-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`} />
+              {input.type === "textarea" ? (
+                <textarea
+                  placeholder={input.desc}
+                  id={input.id}
+                  className={`p-2 focus:outline-none border-none rounded-ee-md rounded-es-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`}
+                />
+              ) : (
+                <input
+                  type={input.type}
+                  placeholder={input.desc}
+                  id={input.id}
+                  className={`p-2 focus:outline-none border-none rounded-ee-md rounded-es-md ${theme === 'dark' ? 'bg-black text-white' : 'bg-red-100 text-black'}`}
+                />
+              )}
             </div>
           ))}
         </div>
+        <button className="flex items-center rounded-lg p-3 bg-red-500 text-white font-medium hover:bg-red-600 font-extrabold text-sm">
+          <span className="mr-2">Enviar</span>
+          <AiOutlineSend className="ml-2" size={20} />
+        </button>
       </div>
     </div>
   );

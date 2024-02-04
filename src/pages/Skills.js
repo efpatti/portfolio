@@ -28,8 +28,6 @@ const skillsData = [
   },
 ];
 
-// ... (imports e outras partes do código)
-
 export default function Skills() {
   const { theme } = useTheme();
   const [activeAccordions, setActiveAccordions] = useState([0]);
@@ -45,7 +43,7 @@ export default function Skills() {
   };
 
   return (
-    <div className={`${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'}`}>
+    <div className={`overflow-hidden ${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'}`}>
       <div className="max-w-lg mx-auto" id="skills">
         <div className="text-center mb-4">
           <h1 className="text-4xl font-semibold">Habilidades</h1>
@@ -91,4 +89,3 @@ export default function Skills() {
     </div>
   );
 }
-
