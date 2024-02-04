@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { FiMoon, FiSun } from 'react-icons/fi';
 import { Link as ScrollLink, Events, scrollSpy } from 'react-scroll';
-
+import { IoMdArrowUp } from 'react-icons/io';
+import { useTheme } from '../ThemeContext'; // Certifique-se de que o caminho está correto
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
-  const [showShadow, setShowShadow] = useState(false);
   const [showScrollTopButton, setShowScrollTopButton] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const navLinks = [
-    { href: "home", label: "Home" },
-    { href: "about", label: "Sobre" },
-    { href: "skills", label: "Habilidades" },
-    { href: "services", label: "Serviços" },
-    { href: "portfolio", label: "Portfólio" },
-    { href: "contact", label: "Contato" },
+    { href: 'home', label: 'Home' },
+    { href: 'about', label: 'Sobre' },
+    { href: 'skills', label: 'Habilidades' },
+    { href: 'services', label: 'Serviços' },
+    { href: 'portfolio', label: 'Portfólio' },
+    { href: 'contact', label: 'Contato' },
   ];
 
   const handleSetActive = (to) => {
@@ -24,7 +25,7 @@ const Navbar = () => {
   };
 
   const handleScroll = () => {
-    const scrollOffset = window.scrollY + window.innerHeight / 2;
+    const scrollOffset = window.scrollY + window.innerHeight / 3;
     const sections = navLinks.map((link) => document.getElementById(link.href));
 
     let activeSection = null;
@@ -42,9 +43,6 @@ const Navbar = () => {
 
     setActiveSection(activeSection);
 
-    // Adicionar sombra quando scrolla um pouco para baixo
-    setShowShadow(scrollOffset > 10);
-
     // Mostrar o botão "Voltar ao Topo" quando scrolla para baixo
     setShowScrollTopButton(scrollOffset > window.innerHeight);
   };
@@ -55,12 +53,6 @@ const Navbar = () => {
       top: 0,
       behavior: 'smooth',
     });
-  };
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-
-    // Você pode adicionar a lógica para alterar as cores do seu site aqui
   };
 
   useEffect(() => {
@@ -80,7 +72,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='sm:px-8 px-6 py-4 z-10 w-full fixed top-0 bg-slate-50'>
+      <header className={`sm:px-8 px-6 py-4 z-10 w-full fixed top-0 ${theme === 'dark' ? 'bg-black' : 'bg-slate-50'}`}>
         <nav className="flex justify-between items-center max-container mx-auto">
           {/* Links visíveis em telas menores */}
           <ul className="flex-1 flex justify-end items-center gap-14 max-lg:hidden">
@@ -92,8 +84,7 @@ const Navbar = () => {
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  className={`leading-normal text-sm ${activeSection === item.href ? 'text-red-500' : 'text-slate-gray'
-                    } cursor-pointer hover:text-red-500`}
+                  className={`leading-normal text-sm ${activeSection === item.href ? 'text-red-500' : 'text-slate-gray'} cursor-pointer hover:text-red-500 ${theme === 'dark' ? 'text-white' : ''}`}
                 >
                   {item.label}
                 </ScrollLink>
@@ -101,10 +92,10 @@ const Navbar = () => {
             ))}
             <li>
               <button
-                onClick={toggleDarkMode}
-                className="text-2xl cursor-pointer"
+                onClick={toggleTheme}
+                className={`text-2xl cursor-pointer ${theme === 'dark' ? 'text-white' : ''} hover:text-red-500`}
               >
-                {isDarkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-600" />}
+                {theme === 'dark' ? <FiSun /> : <FiMoon />}
               </button>
             </li>
           </ul>
@@ -124,7 +115,7 @@ const Navbar = () => {
       {/* Menu suspenso visível em telas menores */}
       {isMenuOpen && (
         <div>
-          <nav className="fixed top-0 right-0 left-0 bottom-0 lg:bottom-auto bg-${isDarkMode ? 'gray-900' : 'white'}">
+          <nav className="fixed top-0 right-0 left-0 bottom-0 lg:bottom-auto bg-white">
             <div
               className="hidden max-lg:block fixed right-0 px-8 py-4 cursor-pointer"
               onClick={() => {
@@ -142,8 +133,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={-70}
                     duration={500}
-                    className={`font-raleway leading-normal text-lg ${activeSection === item.href ? 'text-rose-600' : 'text-slate-gray'
-                      } cursor-pointer`}
+                    className={`font-raleway leading-normal text-lg ${activeSection === item.href ? 'text-rose-600' : 'text-slate-gray'} cursor-pointer`}
                   >
                     {item.label}
                   </ScrollLink>
@@ -160,7 +150,7 @@ const Navbar = () => {
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 bg-red-500 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-red-600"
         >
-          Voltar ao Topo
+          <IoMdArrowUp />
         </button>
       )}
     </>

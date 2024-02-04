@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -7,10 +6,11 @@ import Skills from './pages/Skills';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import { ThemeProvider } from './ThemeContext';
 
 const App = () => {
   return (
-    <div>
+    <ThemeProvider>
       <Navbar />
       <Home />
       <About />
@@ -18,7 +18,7 @@ const App = () => {
       <Services />
       <Portfolio />
       <Contact />
-    </div>
+    </ThemeProvider>
   );
 };
 

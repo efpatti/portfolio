@@ -1,30 +1,42 @@
 import React from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FiLinkedin, FiGithub } from "react-icons/fi";
+import { AiOutlineSend } from "react-icons/ai";
 import perfilPhoto from "../img/foto-perfil.png";
+import { IoMdArrowDown } from "react-icons/io";
+import { BiMouse } from "react-icons/bi";
+import { useTheme } from '../ThemeContext';
 
 const Home = () => {
+  const { theme } = useTheme();
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center text-black">
+    <section id="home" className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'}`}>
       <div className="flex items-center w-full max-w-4xl">
-        {/* Ícone do GitHub à esquerda */}
-        <div className="flex-shrink-0 w-12 text-red-500">
-          <a href="https://github.com/seu-usuario-do-github" target="_blank" rel="noopener noreferrer">
-            <FaGithub size={32} />
-          </a>
+        <div className="flex-row text-red-500">
+          <div className="flex-shrink-0 w-12 mb-3 hover:text-red-600">
+            <a href="https://github.com/seu-usuario-do-github" target="_blank" rel="noopener noreferrer">
+              <FiGithub size={20} />
+            </a>
+          </div>
+          <div className="flex-shrink-0 w-12 hover:text-red-600">
+            <a href="https://www.linkedin.com/in/seu-usuario-do-linkedin" target="_blank" rel="noopener noreferrer">
+              <FiLinkedin size={20} />
+            </a>
+          </div>
         </div>
 
-        {/* Ícone do LinkedIn abaixo do GitHub */}
-        <div className="flex-shrink-0 w-12 text-red-500">
-          <a href="https://www.linkedin.com/in/seu-usuario-do-linkedin" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin size={32} />
-          </a>
-        </div>
-
-        {/* Texto à esquerda */}
         <div className="flex-shrink-0 w-5/12">
           <h1 className="text-5xl font-semibold mb-4 w-80">👋🏽 Olá, meu nome é Enzo</h1>
-          <p className="text-xl font-medium leading-normal text-gray-600">Eu desenvolvo coisas!</p>
-          <button className="rounded-lg p-4 bg-red-500 text-white font-medium mt-4">Contato</button>
+          <p className={`text-xl font-medium leading-normal mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Eu desenvolvo coisas!</p>
+          <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600">
+            <span className="mr-2">Contato</span>
+            <AiOutlineSend className="ml-2" />
+          </button>
+          <button className="flex items-center rounded-lg p-4 font-medium text-rose-500 hover:mt-2 duration-500">
+            <BiMouse className="mr-2" size={26} />
+            <span className={`mr-2 ${theme === 'dark' ? 'text-white' : 'text-black'} text-sm`}>Role para baixo!</span>
+            <IoMdArrowDown className="ml-2" />
+          </button>
         </div>
 
         {/* Foto de perfil à direita */}
