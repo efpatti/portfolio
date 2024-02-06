@@ -27,13 +27,13 @@ const Services = () => {
       </div>
       <div className="flex justify-center mt-8 space-x-8">
         {servicesData.map((item, index) => (
-          <div key={index} className="text-center bg-white rounded-lg p-6 shadow-md w-72">
+          <div key={index} className={`text-center rounded-lg p-6 shadow-md w-72 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
             <div className="mb-4">
-              {index === 0 && <FiLayout className="text-5xl text-red-500 mx-auto" size={25} />}
-              {index === 1 && <FiCode className="text-5xl text-red-500 mx-auto" size={25} />}
-              {index === 2 && <FiServer className="text-5xl text-red-500 mx-auto" size={25} />}
+              {index === 0 && <FiLayout className="text-red-500 mx-auto" size={25} />}
+              {index === 1 && <FiCode className="text-red-500 mx-auto" size={25} />}
+              {index === 2 && <FiServer className="text-red-500 mx-auto" size={25} />}
             </div>
-            <h2 className="text-2xl font-semibold mb-2">{item.title}</h2>
+            <h2 className="text-xl font-medium mb-2">{item.title}</h2>
             <button className="mt-4 px-4 py-2 text-red-500 bg-transparent rounded-md hover:text-red-600 hover:cursor-pointer focus:outline-none focus:ring focus:border-red-300">
               Veja Mais
               <FiArrowRight className="inline ml-2" />

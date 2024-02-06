@@ -7,6 +7,7 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './ThemeContext';
+import Footer from "./components/Footer"
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Services />
       <Portfolio />
       <Contact />
+      <Footer />
     </ThemeProvider>
   );
 };

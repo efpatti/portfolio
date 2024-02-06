@@ -112,6 +112,9 @@ const Contact = () => {
           <span className="mr-2">Enviar</span>
           <AiOutlineSend className="ml-2" size={20} />
         </button>
+        <div className='mt-4 h-14'>
+          <p className='font-normal text-xs text-center text-slate-400'>O envio dos e-mails são feitos utilizando uma ferramenta chamada FormSpree, após o envio click em <span className='font-semibold'>Go Back</span>.</p>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const Home = () => {
       <div className="flex items-center w-full max-w-4xl">
         <div className="flex-row text-red-500">
           <div className="flex-shrink-0 w-12 mb-3 hover:text-red-600">
-            <a href="https://github.com/seu-usuario-do-github" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/efpatti" target="_blank" rel="noopener noreferrer">
               <FiGithub size={20} />
             </a>
           </div>
