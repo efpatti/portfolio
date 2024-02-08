@@ -6,15 +6,15 @@ import { FiActivity } from "react-icons/fi";
 const About = () => {
   const aboutData = [
     {
-      t1: "06+",
+      t1: "01+",
       t2: "Anos de experiência"
     },
     {
-      t1: "18+",
+      t1: "10+",
       t2: "Projetos completos"
     },
     {
-      t1: "02+",
+      t1: "00+",
       t2: "Empresas trabalhadas"
     }
   ]

@@ -59,7 +59,7 @@ export default function Skills() {
       <div className="max-w-lg mx-auto" id="skills">
         <div className="text-center mb-4">
           <h1 className="text-4xl font-semibold">Habilidades</h1>
-          <p className={`text-sm font-normal text-slate-600 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>Ferramentas que tenho contato diariamente</p>
+          <p className={`text-sm font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>Ferramentas que tenho contato diariamente</p>
         </div>
         {skillsData.map((category, index) => (
           <div key={index} className={`mb-4 ${index === skillsData.length - 1 ? 'mb-0' : ''}`}>

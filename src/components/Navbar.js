@@ -83,10 +83,10 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`sm:px-8 px-6 py-4 z-10 w-full fixed top-0 ${theme === 'dark' ? 'bg-home border-home' : 'bg-slate-50 border-zinc-200'} ${navbar ? 'border-b-2 border-zinc-200' : 'border-transparent'}`}>
+      <header className={`sm:px-8 px-6 py-4 z-10 w-full fixed top-0 ${theme === 'dark' ? 'bg-home border-fraquinho text-white' : 'bg-slate-50 border-zinc-200'} ${navbar ? 'border-b-2 ' : ''}`}>
         <nav className="flex justify-between items-center max-container mx-auto">
           {/* Links visíveis em telas menores */}
-          <ul className="flex-1 flex justify-end items-center gap-14 max-lg:hidden">
+          <ul className={`flex-1 flex justify-end items-center gap-14 max-lg:hidden ${theme === 'dark' ? 'text-white' : 'text-slate-gray'}`}>
             {navLinks.map((item) => (
               <li key={item.label} className="pr-4">
                 <ScrollLink
@@ -95,7 +95,7 @@ const Navbar = () => {
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  className={`leading-normal text-sm ${activeSection === item.href ? 'text-red-500' : 'text-slate-gray'} cursor-pointer hover:text-red-500 ${theme === 'dark' ? 'text-white' : ''}`}
+                  className={`leading-normal text-sm ${activeSection === item.href ? 'text-red-500' : ''} cursor-pointer hover:text-red-500`}
                 >
                   {item.label}
                 </ScrollLink>

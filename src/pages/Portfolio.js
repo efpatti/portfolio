@@ -121,17 +121,17 @@ const Portfolio = () => {
                   />
                   <div>
                     <h1 className='font-semibold text-xl text-left'>{project.title}</h1>
-                    <p className={`font-normal text-base text-left mb-4 w-52 text-slate-600 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>{project.desc}</p>
+                    <p className={`font-normal text-base text-left mb-4 w-52 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-600'}`}>{project.desc}</p>
                     {index === projectsData.length - 1 ? (
-                      <a href={project.href} className="cursor-pointer">
-                        <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-pointer">
+                      <a href={project.href} className="cursor-default">
+                        <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-select">
                           <span className="mr-2">{project.btnText}</span>
                           <project.icon className="ml-2" />
                         </button>
                       </a>
                     ) : (
-                      <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-default">
-                        <span className={`mr-2 cursor-${index === projectsData.length - 1 ? 'pointer' : 'text'}`}>{project.btnText}</span>
+                      <button className={`flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-${index === projectsData.length - 1 ? 'pointer' : 'default'}`}>
+                        <span className={`mr-2 ${index === projectsData.length - 1 ? 'cursor-pointer' : 'cursor-text'}`}>{project.btnText}</span>
                         <project.icon className="ml-2" />
                       </button>
                     )}
