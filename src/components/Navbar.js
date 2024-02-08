@@ -14,15 +14,13 @@ const Navbar = () => {
 
   const addShadow = () => {
     if (window.scrollY >= 80) {
-      setNavbar(true)
+      setNavbar(true);
+    } else {
+      setNavbar(false);
     }
-    else {
-      setNavbar(false)
-    }
-  }
+  };
 
-  window.addEventListener('scroll', addShadow)
-
+  window.addEventListener('scroll', addShadow);
 
   const navLinks = [
     { href: 'home', label: 'Home' },
@@ -85,7 +83,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`sm:px-8 px-6 py-4 z-10 w-full fixed top-0 ${theme === 'dark' ? 'bg-black border-gray-800' : 'bg-slate-50 border-zinc-200'} ${navbar ? 'border-b-2 border-zinc-200' : 'border-transparent'}`}>
+      <header className={`sm:px-8 px-6 py-4 z-10 w-full fixed top-0 ${theme === 'dark' ? 'bg-home border-home' : 'bg-slate-50 border-zinc-200'} ${navbar ? 'border-b-2 border-zinc-200' : 'border-transparent'}`}>
         <nav className="flex justify-between items-center max-container mx-auto">
           {/* Links visíveis em telas menores */}
           <ul className="flex-1 flex justify-end items-center gap-14 max-lg:hidden">
@@ -158,14 +156,12 @@ const Navbar = () => {
       )}
 
       {/* Botão de voltar ao topo */}
-      {showScrollTopButton && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-red-500 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-red-600"
-        >
-          <IoMdArrowUp />
-        </button>
-      )}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 bg-red-500 text-white py-2 px-3 rounded-md cursor-pointer transition-all duration-300 transform ${showScrollTopButton ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'} hover:bg-red-600`}
+      >
+        <IoMdArrowUp className="text-xl" size={16} />
+      </button>
     </>
   );
 };

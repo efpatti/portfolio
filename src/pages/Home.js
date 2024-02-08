@@ -11,7 +11,7 @@ const Home = () => {
   const { theme } = useTheme();
 
   return (
-    <section id="home" className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'}`}>
+    <section id="home" className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-home text-white' : 'bg-slate-50 text-black'}`}>
       <div className="flex items-center w-full max-w-4xl">
         <div className="flex-row text-red-500">
           <div className="flex-shrink-0 w-12 mb-3 hover:text-red-600">
@@ -37,9 +37,9 @@ const Home = () => {
           </ScrollLink>
           <ScrollLink to="about" smooth={true} duration={500} offset={-70}>
             <button className={`flex items-center rounded-lg p-4 font-medium text-rose-500 duration-500 hover:transform hover:translate-y-1 ${theme === 'dark' ? 'text-white' : 'text-black'} mb-2`}>
-              <BiMouse className="mr-2" size={26} />
+              <BiMouse className="mr-2 text-red-500" size={26} />
               <span className={`mr-2 ${theme === 'dark' ? 'text-white' : 'text-black'} text-sm`}>Role para baixo!</span>
-              <IoMdArrowDown className="ml-2" />
+              <IoMdArrowDown className="ml-2 text-red-500" />
             </button>
           </ScrollLink>
         </div>

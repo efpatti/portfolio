@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdFileDownload } from "react-icons/md";
+import { FiDownload } from "react-icons/fi";
 import { useTheme } from "../ThemeContext"
 import { FiActivity } from "react-icons/fi";
 
@@ -20,10 +20,10 @@ const About = () => {
   ]
   const { theme } = useTheme();
   return (
-    <section id="about" className={`min-h-screen flex flex-col items-center justify-center text-black ${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'}`}>
+    <section id="about" className={`min-h-screen flex flex-col items-center justify-center text-black ${theme === 'dark' ? 'bg-home text-white' : 'bg-slate-50 text-black'}`}>
       <div className="text-center mb-4">
         <h1 className="text-4xl font-semibold">Sobre mim</h1>
-        <p className="text-sm font-normal text-slate-600">Minha introdução</p>
+        <p className={`text-sm font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>Minha introdução</p>
       </div>
       <div className="flex items-center mb-8">
         <div className="w-80 h-80 rounded-full bg-gradient-to-r from-red-200 to-rose-500 flex items-center justify-center text-white mr-8"> {/* Ajustei a margem direita aqui */}
@@ -34,8 +34,8 @@ const About = () => {
         </div>
         <div className='w-72 flex flex-col'>
           <div className='mb-4'>
-            <p className="text-sm font-normal text-slate-600">Olá, meu nome é <span className="font-bold">Enzo</span> ou ilelo e sou apaixonado em criar coisas! Meu interesse em desenvolvimento web surgiu em 2022 com influências do meu pai, partir daí comecei a construir pequenos sites em HTML & CSS.</p>
-            <p className='text-sm font-normal text-slate-600'>Trazendo para o presente, eu tenho o prazer de trabalhar em uma <span className="font-bold">start-up </span>sensacional! Meu foco atual é desenvolver aplicações, sites responsivos, acessibilidade, interfaces gráficas e muito mais.</p>
+            <p className={`text-sm font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>Olá, meu nome é <span className="font-bold">Enzo</span> ou ilelo e sou apaixonado em criar coisas! Meu interesse em desenvolvimento web surgiu em 2022 com influências do meu pai, partir daí comecei a construir pequenos sites em HTML & CSS.</p>
+            <p className={`text-sm font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>Trazendo para o presente, eu tenho o prazer de trabalhar em uma <span className="font-bold">start-up </span>sensacional! Meu foco atual é desenvolver aplicações, sites responsivos, acessibilidade, interfaces gráficas e muito mais.</p>
           </div>
           <div>
             <div className="flex flex-row text-center">
@@ -50,7 +50,7 @@ const About = () => {
           <div>
             <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4">
               <span className="mr-2">Download CV</span>
-              <MdFileDownload className="ml-2" />
+              <FiDownload className="ml-2" />
             </button>
           </div>
         </div>

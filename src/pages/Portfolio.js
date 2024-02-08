@@ -24,6 +24,7 @@ const Portfolio = () => {
       desc: "Página web com HTML, SCSS e JavaScript com o objetivo de catalogar e comprar pulseiras de proteção para idosos.",
       btnText: "Sem demo",
       icon: VscError,
+      href: ""
     },
     {
       title: "Temporizador Pomodoro",
@@ -33,6 +34,7 @@ const Portfolio = () => {
       desc: "Aplicação Web com ReactJs e CSS com o objetivo de utilizar o método pomodoro para melhora de produtividade.",
       btnText: "Sem demo",
       icon: VscError,
+      href: ""
     },
     {
       title: "Nota Aluno",
@@ -42,6 +44,7 @@ const Portfolio = () => {
       desc: "Aplicação Web (CRUD) com ReactJs com o objetivo de inserir e modificar notas, mas também adicionar e remover alunos.",
       btnText: "Sem demo",
       icon: VscError,
+      href: ""
     },
     {
       title: "Mercado",
@@ -51,6 +54,7 @@ const Portfolio = () => {
       desc: "Página Web (CRUD) com HTML, CSS e JavaScript com o objetivo de adicionar e remover produtos em uma tabela.",
       btnText: "Sem demo",
       icon: VscError,
+      href: ""
     },
     {
       title: "Ateliê Vila Alpina",
@@ -60,6 +64,7 @@ const Portfolio = () => {
       desc: "Aplicação Web com ReactJs, SCSS, Express, Core e Stripe. Com o objetivo de catalogar e comprar produtos.",
       btnText: "Sem demo",
       icon: VscError,
+      href: ""
     },
     {
       title: "Meu GitHub",
@@ -69,16 +74,17 @@ const Portfolio = () => {
       desc: "Ficou interessado e gostaria de ver mais projetos ? Acessa meu GitHub e veja todos os meus repositórios tanto de estudos quanto projetos pessoais!",
       btnText: "Saíba Mais",
       icon: FaArrowRight,
+      href: "https://github.com/efpatti"
     }
   ];
   const { theme } = useTheme();
 
   return (
-    <div className={`${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'}`}>
+    <div className={`${theme === 'dark' ? 'bg-home text-white' : 'bg-slate-50 text-black'}`}>
       <div className="mx-auto" id="portfolio">
         <div className="text-center">
           <h1 className="text-4xl font-semibold">Portfólio</h1>
-          <p className="text-sm font-normal text-slate-600">Trabalhos mais recentes</p>
+          <p className={`text-sm font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>Trabalhos mais recentes</p>
         </div>
         <Swiper
           style={{
@@ -115,11 +121,20 @@ const Portfolio = () => {
                   />
                   <div>
                     <h1 className='font-semibold text-xl text-left'>{project.title}</h1>
-                    <p className='font-normal text-base text-left mb-4 w-52 text-slate-600'>{project.desc}</p>
-                    <button className={`flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-${index === projectsData.length - 1 ? 'pointer' : 'default'}`}>
-                      <span className={`mr-2 cursor-${index === projectsData.length - 1 ? 'pointer' : 'text'}`}>{project.btnText}</span>
-                      <project.icon className="ml-2" />
-                    </button>
+                    <p className={`font-normal text-base text-left mb-4 w-52 text-slate-600 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>{project.desc}</p>
+                    {index === projectsData.length - 1 ? (
+                      <a href={project.href} className="cursor-pointer">
+                        <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-pointer">
+                          <span className="mr-2">{project.btnText}</span>
+                          <project.icon className="ml-2" />
+                        </button>
+                      </a>
+                    ) : (
+                      <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-default">
+                        <span className={`mr-2 cursor-${index === projectsData.length - 1 ? 'pointer' : 'text'}`}>{project.btnText}</span>
+                        <project.icon className="ml-2" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

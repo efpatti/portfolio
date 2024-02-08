@@ -8,31 +8,32 @@ const Services = () => {
     {
       title: 'Ui/Ux Designer',
       description: [
-        'Descrição do serviço de Ui/Ux Designer',
-        '- Item 1',
-        '- Item 2',
-        '- Item 3',
-        '- Item 4',
+        'Desenvolvo o layout da sua aplicação mobile ou web.',
+        'Crio vídeos editados para apresentações de aplicações.',
+        'Desenvolvo interfaces UI/UX interativas.',
+        'Crio logótipos de marcas.',
+        'E muito mais...',
       ],
     },
     {
       title: 'Frontend',
       description: [
-        'Descrição do serviço de Frontend',
-        '- Item 1',
-        '- Item 2',
-        '- Item 3',
-        '- Item 4',
+        'Aplico landing pages.',
+        'Desenvolvo páginas com designes diversos.',
+        'Manutenção de códigos.',
+        'Crio a responsividade do seu site.',
+        'Implementações de novas funcionalidades.',
+        'E muito mais...'
       ],
     },
     {
       title: 'Backend',
       description: [
-        'Descrição do serviço de Backend',
-        '- Item 1',
-        '- Item 2',
-        '- Item 3',
-        '- Item 4',
+        'Refatoração de databases.',
+        'Manutenção de bancos de dados.',
+        'Migração de tecnologia.',
+        'Remodelagem da lógica do banco de dados.',
+        'E muito mais...',
       ],
     },
   ];
@@ -50,13 +51,12 @@ const Services = () => {
 
   return (
     <div
-      className={`h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-black'
-        }`}
+      className={`h-screen flex flex-col justify-center items-center ${theme === 'dark' ? 'bg-home text-white' : 'bg-slate-50 text-black'}`}
     >
       <div className="max-w-lg mx-auto" id="services">
         <div className="text-center">
           <h1 className="text-4xl font-semibold">Serviços</h1>
-          <p className="text-sm font-normal text-slate-600">
+          <p className={`text-sm font-normal ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>
             O que eu ofereço
           </p>
         </div>
@@ -66,7 +66,7 @@ const Services = () => {
           <div
             key={index}
             className={`text-center rounded-lg p-6 shadow-md w-72 h-56 ${theme === 'dark'
-              ? 'bg-black text-white'
+              ? 'bg-fraquinho text-white'
               : 'bg-white text-black'
               }`}
           >
@@ -90,11 +90,11 @@ const Services = () => {
               <FiArrowRight className="inline ml-2" />
             </button>
             {openModalIndex === index && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                <div className={`rounded-lg p-6 relative overflow-y-auto max-h-96 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
-                  <h2 className="text-xl font-medium mb-2">{item.title}</h2>
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-home bg-opacity-50">
+                <div className={`rounded-lg p-6 relative overflow-y-auto max-h-96 ${theme === 'dark' ? 'bg-home text-white' : 'bg-white text-black'}`}>
+                  <h2 className="text-xl font-medium mb-2 text-start">{item.title}</h2>
                   {item.description.map((desc, i) => (
-                    <p key={i}>
+                    <p key={i} className='text-left text-base font-normal text-slate-500 leading-9'>
                       <FaRegCheckCircle className="inline mr-2 text-rose-500" />
                       {desc}
                     </p>
