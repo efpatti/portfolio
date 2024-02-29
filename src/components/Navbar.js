@@ -54,7 +54,6 @@ const Navbar = () => {
 
     setActiveSection(activeSection);
 
-    // Mostrar o botão "Voltar ao Topo" quando scrolla para baixo
     setShowScrollTopButton(scrollOffset > window.innerHeight);
   };
 

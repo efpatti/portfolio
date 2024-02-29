@@ -1,82 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useTheme } from '../ThemeContext';
-import imgAtelie from "../img/atelie.png";
-import imgVovoSeguro from "../img/vovo-seguro.png";
-import imgMercado from "../img/mercado.png";
-import imgNotaAluno from "../img/nota-aluno.png";
-import imgPomodoro from "../img/pomodoro.png";
-import imgGitHub from "../img/github.png"
-import { VscError } from "react-icons/vsc";
-import { FaArrowRight } from "react-icons/fa";
+
 
 const Portfolio = () => {
-  const projectsData = [
-    {
-      title: "Vovô Seguro",
-      img: imgVovoSeguro,
-      width: "16rem",
-      height: "9rem",
-      desc: "Página web com HTML, SCSS e JavaScript com o objetivo de catalogar e comprar pulseiras de proteção para idosos.",
-      btnText: "Sem demo",
-      icon: VscError,
-      href: ""
-    },
-    {
-      title: "Temporizador Pomodoro",
-      img: imgPomodoro,
-      width: "16rem",
-      height: "9rem",
-      desc: "Aplicação Web com ReactJs e CSS com o objetivo de utilizar o método pomodoro para melhora de produtividade.",
-      btnText: "Sem demo",
-      icon: VscError,
-      href: ""
-    },
-    {
-      title: "Nota Aluno",
-      img: imgNotaAluno,
-      width: "16rem",
-      height: "9rem",
-      desc: "Aplicação Web (CRUD) com ReactJs com o objetivo de inserir e modificar notas, mas também adicionar e remover alunos.",
-      btnText: "Sem demo",
-      icon: VscError,
-      href: ""
-    },
-    {
-      title: "Mercado",
-      img: imgMercado,
-      width: "16rem",
-      height: "9rem",
-      desc: "Página Web (CRUD) com HTML, CSS e JavaScript com o objetivo de adicionar e remover produtos em uma tabela.",
-      btnText: "Sem demo",
-      icon: VscError,
-      href: ""
-    },
-    {
-      title: "Ateliê Vila Alpina",
-      img: imgAtelie,
-      width: "16rem",
-      height: "9rem",
-      desc: "Aplicação Web com ReactJs, SCSS, Express, Core e Stripe. Com o objetivo de catalogar e comprar produtos.",
-      btnText: "Sem demo",
-      icon: VscError,
-      href: ""
-    },
-    {
-      title: "Meu GitHub",
-      img: imgGitHub,
-      width: "13rem",
-      height: "16rem",
-      desc: "Ficou interessado e gostaria de ver mais projetos ? Acessa meu GitHub e veja todos os meus repositórios tanto de estudos quanto projetos pessoais!",
-      btnText: "Saíba Mais",
-      icon: FaArrowRight,
-      href: "https://github.com/efpatti"
+
+  const [repos, setRepos] = useState([]);
+  useEffect(() => {
+    async function fetchGitHubRepos() {
+      try {
+        const response = await fetch('https://api.github.com/users/efpatti/repos');
+
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+
+        const data = await response.json();
+        setRepos(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  ];
+
+    fetchGitHubRepos();
+  }, []);
+
   const { theme } = useTheme();
 
   return (
@@ -109,30 +61,22 @@ const Portfolio = () => {
           }}
           className="mySwiper"
         >
-          {projectsData.map((project, index) => (
+          {repos.map((project, index) => (
             <SwiperSlide key={index}>
               <div className="flex justify-center items-center h-full mt-5 mb-10">
                 <div className="flex items-center">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    style={{ width: project.width, height: project.height }}
-                    className='mr-5'
-                  />
                   <div>
-                    <h1 className='font-semibold text-xl text-left'>{project.title}</h1>
-                    <p className={`font-normal text-base text-left mb-4 w-52 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-600'}`}>{project.desc}</p>
-                    {index === projectsData.length - 1 ? (
+                    <h1 className='font-semibold text-xl text-left'>{project.name}</h1>
+                    <p className={`font-normal text-base text-left mb-4 w-52 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-600'}`}>{project.description}</p>
+                    {index === repos.length - 1 ? (
                       <a href={project.href} className="cursor-default">
                         <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-select">
-                          <span className="mr-2">{project.btnText}</span>
-                          <project.icon className="ml-2" />
+                          <span className="mr-2">Saíba Mais</span>
                         </button>
                       </a>
                     ) : (
-                      <button className={`flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-${index === projectsData.length - 1 ? 'pointer' : 'default'}`}>
-                        <span className={`mr-2 ${index === projectsData.length - 1 ? 'cursor-pointer' : 'cursor-text'}`}>{project.btnText}</span>
-                        <project.icon className="ml-2" />
+                      <button className={`flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-${index === repos.length - 1 ? 'pointer' : 'default'}`}>
+                        <span className={`mr-2 ${index === repos.length - 1 ? 'cursor-pointer' : 'cursor-text'}`}>Saíba Mais</span>
                       </button>
                     )}
                   </div>
