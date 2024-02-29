@@ -39,8 +39,8 @@ const About = () => {
           </div>
           <div>
             <div className="flex flex-row text-center">
-              {aboutData.map((item) => (
-                <div>
+              {aboutData.map((item, i) => (
+                <div key={i}>
                   <span className='text-2xl font-semibold'>{item.t1}</span>
                   <p className='text-xs font-normal'>{item.t2}</p>
                 </div>
