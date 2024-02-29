@@ -68,6 +68,7 @@ const Portfolio = () => {
                   <div>
                     <h1 className='font-semibold text-xl text-left'>{project.name}</h1>
                     <p className={`font-normal text-base text-left mb-4 w-52 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-600'}`}>{project.description}</p>
+                    <p className={`font-normal text-base text-left mb-4 w-52 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-600'}`}>{project.efpatti}</p>
                     {index === repos.length - 1 ? (
                       <a href={project.href} className="cursor-default">
                         <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 text-left cursor-select">
