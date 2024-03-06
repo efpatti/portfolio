@@ -9,12 +9,14 @@ app.use(cors());
 
 app.get("/repo-images", async (req, res) => {
   try {
-    console.log("Fetching repo images...");
+    console.log("Buscando imagens dos repositórios...");
+    const token = "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";
+    console.log("Usando o token:", token);
     const response = await axios.get(
       "https://api.github.com/users/efpatti/repos",
       {
         headers: {
-          Authorization: "token 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",
+          Authorization: `token ${token}`,
         },
       }
     );
@@ -31,7 +33,7 @@ app.get("/repo-images", async (req, res) => {
             `https://api.github.com/repos/efpatti/${repo.name}/contents`,
             {
               headers: {
-                Authorization: "token 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",
+                Authorization: `token ${token}`,
               },
             }
           );
@@ -54,12 +56,12 @@ app.get("/repo-images", async (req, res) => {
       return acc;
     }, {});
 
-    console.log("Fetched repo images:", portfolioImages);
+    console.log("Imagens dos repositórios encontradas:", portfolioImages);
 
     res.json(portfolioImages);
   } catch (error) {
-    console.error("Error fetching repo images:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error("Erro ao buscar imagens dos repositórios:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 });
 

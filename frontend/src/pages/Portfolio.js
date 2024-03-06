@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTheme } from "../ThemeContext";
+import { capitalCase } from "change-case";
+import { ImCancelCircle } from "react-icons/im";
 
 const Portfolio = () => {
   const [repoImages, setRepoImages] = useState([]);
@@ -75,21 +77,27 @@ const Portfolio = () => {
             images.map((imageUrl, index) => (
               <SwiperSlide key={`${repoName}-${index}`}>
                 <div className="flex justify-center items-center h-full mt-5 mb-10">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2 max-w-screen-lg">
                     <div className="col">
                       {imageUrl ? (
                         <img
                           src={imageUrl}
                           alt={`${repoName}-${index}`}
-                          className="h-96 w-96"
+                          className="h-56 w-96"
                         />
                       ) : (
                         <p>Nenhuma imagem disponível para este projeto.</p>
                       )}
                     </div>
                     <div className="col">
-                      <h1>{repoName}</h1>
-                      <p>{desc}</p>
+                      <h1 className="text-xl font-semibold mb-1">
+                        {capitalCase(repoName)}
+                      </h1>
+                      <p className="text-sm w-3/4 font-light mb-3">{desc}</p>
+                      <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 cursor-text">
+                        <span className="mr-2">Sem demo</span>
+                        <ImCancelCircle className="ml-2" />
+                      </button>
                     </div>
                   </div>
                 </div>
