@@ -71,13 +71,25 @@ const Portfolio = () => {
           }}
           className="mySwiper"
         >
-          {Object.entries(repoImages).map(([repoName, images]) =>
+          {Object.entries(repoImages).map(([repoName, { images, desc }]) =>
             images.map((imageUrl, index) => (
               <SwiperSlide key={`${repoName}-${index}`}>
                 <div className="flex justify-center items-center h-full mt-5 mb-10">
-                  <div className="flex items-center">
-                    <div>
-                      <img src={imageUrl} alt={`${repoName}-${index}`} />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="col">
+                      {imageUrl ? (
+                        <img
+                          src={imageUrl}
+                          alt={`${repoName}-${index}`}
+                          className="h-96 w-96"
+                        />
+                      ) : (
+                        <p>Nenhuma imagem disponível para este projeto.</p>
+                      )}
+                    </div>
+                    <div className="col">
+                      <h1>{repoName}</h1>
+                      <p>{desc}</p>
                     </div>
                   </div>
                 </div>

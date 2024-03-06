@@ -11,7 +11,12 @@ app.get("/repo-images", async (req, res) => {
   try {
     console.log("Fetching repo images...");
     const response = await axios.get(
-      "https://api.github.com/users/efpatti/repos"
+      "https://api.github.com/users/efpatti/repos",
+      {
+        headers: {
+          Authorization: "token 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",
+        },
+      }
     );
     const repos = response.data;
 
@@ -23,7 +28,12 @@ app.get("/repo-images", async (req, res) => {
         const readmeText = readmeResponse.data;
         if (readmeText.includes("portfólio: true")) {
           const imagesResponse = await axios.get(
-            `https://api.github.com/repos/efpatti/${repo.name}/contents`
+            `https://api.github.com/repos/efpatti/${repo.name}/contents`,
+            {
+              headers: {
+                Authorization: "token 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",
+              },
+            }
           );
           const responseData = imagesResponse.data;
           const imageFiles = responseData.filter(
@@ -31,7 +41,7 @@ app.get("/repo-images", async (req, res) => {
               item.type === "file" && item.name.match(/\.(jpg|jpeg|png|gif)$/i)
           );
           const imageUrls = imageFiles.map((item) => item.download_url);
-          return { name: repo.name, images: imageUrls };
+          return { name: repo.name, images: imageUrls, desc: repo.description };
         }
         return null;
       })
@@ -39,7 +49,7 @@ app.get("/repo-images", async (req, res) => {
 
     const portfolioImages = portfolioRepos.reduce((acc, curr) => {
       if (curr) {
-        acc[curr.name] = curr.images;
+        acc[curr.name] = { images: curr.images, desc: curr.desc };
       }
       return acc;
     }, {});
