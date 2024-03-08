@@ -7,6 +7,8 @@ import "swiper/css/navigation";
 import { useTheme } from "../ThemeContext";
 import { capitalCase } from "change-case";
 import { ImCancelCircle } from "react-icons/im";
+import GithubImg from "../img/github.png";
+import { FaArrowRight } from "react-icons/fa";
 
 const Portfolio = () => {
   const [repoImages, setRepoImages] = useState([]);
@@ -30,6 +32,15 @@ const Portfolio = () => {
   }, []);
 
   const { theme } = useTheme();
+  const lastRepo = [
+    {
+      title: "Meu GitHub",
+      desc: "Ficou interessado e gostaria de ver mais projetos? Acesse meu GitHub e veja todos os meus repositórios, tanto de estudos quanto projetos pessoais!",
+      img: GithubImg,
+      btn: "Saiba Mais",
+      icon: FaArrowRight,
+    },
+  ];
 
   return (
     <div
@@ -104,6 +115,31 @@ const Portfolio = () => {
               </SwiperSlide>
             ))
           )}
+
+          {/* Último repositório */}
+          {lastRepo.map((repo, index) => (
+            <SwiperSlide key={`last-repo-${index}`}>
+              <div className="flex justify-center items-center h-full mt-5 mb-10">
+                <div className="grid grid-cols-2 gap-2 max-w-screen-lg">
+                  <div className="col">
+                    <img
+                      src={repo.img}
+                      alt={repo.title}
+                      className="h-80 w-72"
+                    />
+                  </div>
+                  <div className="col">
+                    <h1 className="text-xl font-semibold mb-1">{repo.title}</h1>
+                    <p className="text-sm w-3/4 font-light mb-3">{repo.desc}</p>
+                    <button className="flex items-center rounded-lg p-4 bg-red-500 text-white font-medium hover:bg-red-600 mt-4 cursor-pointer">
+                      <span className="mr-2">{repo.btn}</span>
+                      <repo.icon className="ml-2" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
