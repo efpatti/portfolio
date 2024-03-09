@@ -10,7 +10,7 @@ app.use(cors());
 app.get("/repo-images", async (req, res) => {
   try {
     console.log("Buscando imagens dos repositórios...");
-    const token = "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";
+    const token = "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";
     console.log("Usando o token:", token);
     const response = await axios.get(
       "https://api.github.com/users/efpatti/repos",
